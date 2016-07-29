@@ -1,0 +1,11 @@
+__author__ = 'yy'
+#create random password
+import random
+import string
+
+f = open('Promo_code.txt', 'wb')
+for i in range(200):
+    char = string.letters + string.digits
+    s = [random.choice(char) for j in range(10)]
+    f.write(''.join(s) + "\n")
+f.close()
