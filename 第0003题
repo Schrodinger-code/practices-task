@@ -1,0 +1,22 @@
+__author__ = 'yy'
+import random
+import string
+import redis
+
+fw = open('Promo_code.txt', 'wb')
+fr = open('Promo_code.txt', 'rb')
+for i in range(200):
+    char = string.letters + string.digits
+    s = [random.choice(char) for j in range(10)]
+    fw.write(''.join(s) + "\n")
+fw.close()
+
+pool = redis.ConnectionPool(host='192.168.123.131', port=6379, db=0)
+r = redis.Redis(connection_pool=pool)
+j = 1
+for line in fr:
+    r.set(j, line)
+    print r.get(j)
+    j += 1
+
+fr.close()
