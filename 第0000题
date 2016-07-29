@@ -14,3 +14,18 @@ def add_num(img):
 if __name__ == '__main__':
     img = Image.open('C:\Users\yy\Downloads\BingWallpaper.jpg')
     add_num(img)
+
+##################################################################### or
+def add_num(pic):
+    #pic.show()
+    draw = ImageDraw.Draw(pic)
+    myfont = ImageFont.truetype('C:\Windows\Fonts\Microsoft YaHei UI\msyhbd.ttc', size=40)
+    fillcolor = "#ff0001"
+    width, height = pic.size
+    draw.text((width-50, 0), '666', font=myfont, color=fillcolor)
+    pic.save('result.jpg', 'jpeg')
+    return 0
+
+if __name__ == '__main__':
+    pic = Image.open("C:\Users\yy\Downloads\BingWallpaper.jpg")
+    add_num(pic)
