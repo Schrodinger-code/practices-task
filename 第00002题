@@ -1,0 +1,27 @@
+__author__ = 'yy'
+import random
+import string
+import MySQLdb
+
+fw = open('Promo_code.txt', 'wb')
+for i in range(200):
+    char = string.letters + string.digits
+    s = [random.choice(char) for j in range(10)]
+    fw.write(''.join(s) + "\n")
+fw.close()
+conn = MySQLdb.connect(
+        host='192.168.123.131',
+        port=3316,
+        user='iapppay',
+        passwd='iapppay'
+        )
+cur = conn.cursor()
+cur.execute("use keynum;")
+#cur.execute("create table num(num char(10) PRIMARY KEY);")
+fr = open('Promo_code.txt', 'rb')
+for line in fr:
+    cur.execute("insert INTO num(num) VALUES(%s);",  line)
+cur.close()
+conn.commit()
+conn.close()
+fr.close()
