@@ -1,0 +1,17 @@
+__author__ = 'yy'
+# -*- coding: cp936 -*-
+import xlwt
+import os
+wb = xlwt.Workbook()
+ws = wb.add_sheet("test")
+f = file("test.txt")
+lines = f.read()
+linesList = lines.split("\n")
+for y in range(len(linesList)):
+    lineList = linesList[y].split()
+    for x in range(len(lineList)):
+        ws.write(y, x, unicode(lineList[x], "gbk"))
+f.close()
+if os.path.isfile("test.xls"):
+    os.remove("test.xls")
+wb.save("test.xls")
