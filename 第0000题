@@ -1,0 +1,16 @@
+__author__ = 'yy'
+from PIL import Image, ImageFont, ImageDraw
+
+
+def add_num(img):
+    Draw = ImageDraw.Draw(img, mode=None)
+    MyFont = ImageFont.truetype('C:\Windows\Fonts\FZLTCXHJW.TTF', size=66)
+    #MyColor = img.getpixel((577, 422))
+    #MyColor = "rgb(100%,0%,0%)"
+    width, height = img.size
+    Draw.text((width-1500, 1000), '666', font=MyFont, fill='black')
+    img.save('result_666.jpg', "jpeg")
+    return 0
+if __name__ == '__main__':
+    img = Image.open('C:\Users\yy\Downloads\BingWallpaper.jpg')
+    add_num(img)
