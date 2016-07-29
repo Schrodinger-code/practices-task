@@ -1,0 +1,27 @@
+__author__ = 'yy'
+import re
+countLines = 0
+countChars = 0
+linesList = []
+wordsDict = {}
+f = open('article.txt', 'r')
+for line in f:
+    countLines += 1
+    countChars += len(line)
+    math = re.findall(r'[^a-zA-Z0-9]+', line)
+    for i in math:
+        line = line.replace(i, ' ')
+    linesList = line.split()
+    for word in linesList:
+        if word not in wordsDict:
+            wordsDict[word] = 1
+        else:
+            wordsDict[word] += 1
+
+
+print "Total lines are: ", countLines
+print "Total words are: ", len(wordsDict)
+print "Total characters are: ", countChars
+
+for k, v in wordsDict.items():
+    print k, v
